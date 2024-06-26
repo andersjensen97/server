@@ -10,17 +10,10 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.NoHandlerFoundException;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,40 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-
-// ALEX
-//import static spark.Spark.*;
-
-//import org.json.JSONArray;
-/*
-import java.io.File;
-import java.util.Arrays;
-
-public class GameServer {
-    public static void main(String[] args) {
-        port(8080);
-
-        get("/games", (req, res) -> {
-            File gamesDir = new File("resources/static/games");
-            if (gamesDir.exists() && gamesDir.isDirectory()) {
-                String[] games = gamesDir.list();
-                if (games != null) {
-                    JSONArray gamesArray = new JSONArray(Arrays.asList(games));
-                    res.type("application/json");
-                    return gamesArray.toString();
-                }
-            }
-            res.status(404);
-            return "Games directory not found or is not a directory";
-        });
-    }
-}*/
-//ALEX
-
 
 
 @RestController
