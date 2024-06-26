@@ -1,0 +1,131 @@
+{
+    "phase": "ACTIVATION",
+    "current": {
+        "color": "red",
+        "heading": "NORTH",
+        "energyCubes": 0,
+        "name": "Player 6",
+        "spawnSpace": {
+            "x": 0,
+            "y": 5
+        },
+        "checkPoint": 0,
+        "space": {
+            "x": 0,
+            "y": 5
+        }
+    },
+    "players": [
+        {
+            "color": "red",
+            "heading": "SOUTH",
+            "energyCubes": 0,
+            "name": "Player 1",
+            "spawnSpace": {
+                "x": 0,
+                "y": 0
+            },
+            "checkPoint": 0,
+            "space": {
+                "x": 7,
+                "y": 0
+            }
+        },
+        {
+            "color": "green",
+            "heading": "SOUTH",
+            "energyCubes": 0,
+            "name": "Player 2",
+            "spawnSpace": {
+                "x": 0,
+                "y": 1
+            },
+            "checkPoint": 0,
+            "space": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        {
+            "color": "red",
+            "heading": "SOUTH",
+            "energyCubes": 0,
+            "name": "Player 3",
+            "spawnSpace": {
+                "x": 0,
+                "y": 2
+            },
+            "checkPoint": 0,
+            "space": {
+                "x": 0,
+                "y": 2
+            }
+        },
+        {
+            "color": "red",
+            "heading": "SOUTH",
+            "energyCubes": 0,
+            "name": "Player 4",
+            "spawnSpace": {
+                "x": 0,
+                "y": 3
+            },
+            "checkPoint": 0,
+            "space": {
+                "x": 0,
+                "y": 3
+            }
+        },
+        {
+            "color": "red",
+            "heading": "SOUTH",
+            "energyCubes": 0,
+            "name": "Player 5",
+            "spawnSpace": {
+                "x": 0,
+                "y": 4
+            },
+            "checkPoint": 0,
+            "space": {
+                "x": 0,
+                "y": 4
+            }
+        },
+        {
+            "color": "red",
+            "heading": "NORTH",
+            "energyCubes": 0,
+            "name": "Player 6",
+            "spawnSpace": {
+                "x": 0,
+                "y": 5
+            },
+            "checkPoint": 0,
+            "space": {
+                "x": 0,
+                "y": 5
+            }
+        }
+    ],
+    "spawnSpaces": [
+        {
+            "x": 0,
+            "y": 0
+        },
+        {
+            "x": 0,
+            "y": 1
+        },
+        {
+            "x": 0,
+            "y": 2
+        },
+        {
+            "x": 0,
+            "y": 3
+        }
+    ],
+    "step": 1,
+    "stepMode": true,
+    "map": "defaultboard"
+}
