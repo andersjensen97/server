@@ -107,7 +107,12 @@ public class JsonFileController {
     @Value("${app.base-path}")
     private String BASE_PATH;
 
-
+    /***
+     * Sends the player data file to the clients
+     * @param gameName the game which is sent from
+     * @return the game data as a string
+     * @author Uffe Clausen
+     */
     @GetMapping("/games/{gameName}/playersb")
     public String getPlayersJson(@PathVariable String gameName) {
         try {
@@ -117,17 +122,13 @@ public class JsonFileController {
         } catch (Exception e) {}
         return null;
     }
-/*
-    @PostMapping("/games/{gameName}/players")
-    public ResponseEntity<String> putPlayersJson(@PathVariable String gameName, @RequestBody String jsonBoardData) {
-        try {
-            Path path = Paths.get(BASE_PATH, gameName, "players.json");
-            Files.write(path, jsonBoardData.getBytes());
-            return ResponseEntity.ok("JSON data.json for players in " + gameName + " has been updated successfully.");
-        } catch (Exception ignored) {}
-        return null;
-    }*/
 
+    /***
+     * sends the board to the clients
+     * @param gameName the game which the board get send from
+     * @return the board as a string
+     * @author Uffe Clausen
+     */
     @GetMapping("/games/{gameName}/board")
     public String getBoardJson(@PathVariable String gameName) {
         try {
@@ -138,6 +139,13 @@ public class JsonFileController {
         return null;
     }
 
+    /***
+     * Updates the board then its sent
+     * @param gameName game which board needs updating
+     * @param jsonBoardData json file for the board
+     * @return  the response entiry
+     * @Uffe Clausen
+     */
     @PutMapping("/games/{gameName}/board")
     public ResponseEntity<String> putBoardJson(@PathVariable String gameName, @RequestBody String jsonBoardData) {
         try {
@@ -148,16 +156,12 @@ public class JsonFileController {
         return null;
     }
 
-    // u17
-    /*@GetMapping("/games/{gameName}/data")
-    public String getDataJson(@PathVariable String gameName) {
-        try {
-            Path path = Paths.get(BASE_PATH, gameName, "data.json");
-            byte[] jsonBoardData = Files.readAllBytes(path);
-            return new String(jsonBoardData);
-        } catch (Exception e) {}
-        return null;
-    }*/
+    /***
+     * Sends the game data to the clients
+     * @param gameName  the game which needs updating
+     * @return  the response entity
+     * @author Uffe Clausen
+     */
     @GetMapping("/games/{gameName}/data")
     public ResponseEntity<String> getDataJson(@PathVariable String gameName) {
         try {
@@ -172,18 +176,13 @@ public class JsonFileController {
     }
 
 
-    //u17
-    /*@PutMapping("/games/{gameName}/data")
-    public ResponseEntity<String> putDataJson(@PathVariable String gameName, @RequestBody String jsonBoardData) {
-        try {
-            Path path = Paths.get(BASE_PATH, gameName, "data.json");
-            Files.write(path, jsonBoardData.getBytes());
-            return ResponseEntity.ok("JSON data.json for game in " + gameName + " has been updated successfully.");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
+    /***
+     * updates the game data then a moveis made on the client
+     * @param gameName  game there the data gets updated
+     * @param jsonBoardData json file which is sent to update the one on the server
+     * @return  that the game has been updated
+     * @author Uffe Clausen
+     */
     @PutMapping("/games/{gameName}/data")
     public ResponseEntity<String> putDataJson(@PathVariable String gameName, @RequestBody String jsonBoardData) {
         try {
@@ -197,7 +196,11 @@ public class JsonFileController {
         }
     }
 
-
+    /***
+     * Sends a list over the game folders to the client
+     * @return return a list over games on the server
+     * @author Anders Jensen
+     */
     @GetMapping("/games")
     public List<String> getGames() {
         File directory = new File(TXT_GAMES_PATH);
@@ -212,90 +215,12 @@ public class JsonFileController {
         }
     }
 
-
-
-/*
-    @GetMapping("/games/{game}/playersv")
-    public String getPlayers(@PathVariable String game) {
-        File playersFile = new File(TXT_GAMES_PATH +"/"+ game + "/Players.txt");
-        if (playersFile.exists()) {
-            try {
-                return new String(Files.readAllBytes(playersFile.toPath()));
-            } catch (IOException e) {
-                throw new RuntimeException("Failed to read players.json file", e);
-            }
-        } else {
-            throw new RuntimeException("players.json file not found for game: " + game);
-        }
-    }
-*/
-/*
-
-    @PostMapping("/games/{game}/playersv")
-    public String addPlayer(@PathVariable String game, @RequestParam String playerName) {
-        File playersFile = new File(TXT_GAMES_PATH + game + "/Players");
-        try {
-            if (!playersFile.exists()) {
-                playersFile.getParentFile().mkdirs();
-                playersFile.createNewFile();
-            }
-
-            List<String> currentPlayers;
-            try (Stream<String> lines = Files.lines(playersFile.toPath())) {
-                currentPlayers = lines.flatMap(line -> Stream.of(line.split(",\n")))
-                        .map(String::trim)
-                        .collect(Collectors.toList());
-            }
-
-            if (currentPlayers.contains(playerName)) {
-                return "Player already exists.";
-            }
-
-            try (FileWriter writer = new FileWriter(playersFile, true)) {
-                if (currentPlayers.isEmpty()) {
-                    writer.write(playerName);
-                } else {
-                    writer.write(",\n" + playerName);
-                }
-            }
-
-            return "Player added successfully.";
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to write to players.txt file", e);
-        }
-    }
-    */
-
-
-    /*@PutMapping("/games/{game}/playersv")
-    public String addaPlayer(@PathVariable String game, @RequestParam String playerName) {
-        File playersFile = new File(TXT_GAMES_PATH + game + "/Players.txt");
-        try {
-            Path path = Paths.get(TXT_GAMES_PATH);
-            byte[] txtData = Files.readAllBytes(path);
-            return new String(txtData);
-        } catch (Exception e) {
-            logger.error("Failed to read TXT file at " + TXT_GAMES_PATH + ": " + e.getMessage());
-        }
-        return null;
-    }*/
-
-/*
-    @GetMapping("/games")
-    public String getGamesTxt() {
-        try {
-            Path path = Paths.get(TXT_GAMES_PATH);
-            byte[] txtData = Files.readAllBytes(path);
-            return new String(txtData);
-        } catch (Exception e) {
-            logger.error("Failed to read TXT file at " + TXT_GAMES_PATH + ": " + e.getMessage());
-        }
-        return null;
-    }*/
-
-    //NEW
-    //EW
-    //NEW
+    /***
+     * Sends the player list to the clients
+     * @param game what game the players are sent from
+     * @return the string of players that are in txt file
+     * @author Anders Jensen
+     */
     @GetMapping("/games/{game}/players")
     public String getPlayers(@PathVariable String game) {
         File playersFile = new File(TXT_GAMES_PATH +"/"+ game + "/players.txt");
@@ -310,7 +235,13 @@ public class JsonFileController {
         }
     }
 
-
+    /***
+     * Take post request and adds the next player to the txt file
+     * @param game what game it is sent to of the folders
+     * @param playerName the name added to the txt file
+     * @return if the player is added or that it already exist
+     * @author Anders Jensen
+     */
     @PostMapping("/games/{game}/players")
     public String addPlayer(@PathVariable String game, @RequestParam String playerName) {
         File playersFile = new File(TXT_GAMES_PATH +"/"+ game + "/players.txt");
